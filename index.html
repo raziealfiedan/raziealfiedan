@@ -156,7 +156,6 @@
 
         /* Right Column (Main Content) */
         .main-content {
-            /* This prevents flex children from blowing out the grid width */
             min-width: 0;
         }
 
@@ -296,13 +295,13 @@
             gap: 0.5rem;
             overflow-x: auto;
             scroll-snap-type: x mandatory;
-            scrollbar-width: none; /* Removed scrollbar to make it look like a cleaner slider */
+            scrollbar-width: none;
             -webkit-overflow-scrolling: touch;
             scroll-behavior: smooth;
         }
 
         .thumbnail-strip::-webkit-scrollbar {
-            display: none; /* Hide scrollbar completely */
+            display: none;
         }
 
         .thumbnail-strip img {
@@ -356,6 +355,53 @@
             margin-bottom: 2rem;
         }
 
+        /* =========================================
+           NEW: Scroll Animation Classes 
+           ========================================= */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            will-change: opacity, transform;
+        }
+
+        .fade-in-up.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* =========================================
+           NEW: Footer & Back to Top Bar 
+           ========================================= */
+        .site-footer {
+            background-color: #000000;
+            color: #ffffff;
+            text-align: center;
+            padding: 3rem 1rem;
+            margin-top: 4rem;
+        }
+
+        .back-to-top {
+            background-color: transparent;
+            color: #ffffff;
+            border: 1px solid #ffffff;
+            padding: 0.8rem 1.5rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .back-to-top:hover {
+            background-color: var(--accent-red);
+            border-color: var(--accent-red);
+        }
+
         /* Responsive Design for Mobile */
         @media (max-width: 900px) {
             .container {
@@ -394,7 +440,7 @@
 
     <div class="container">
         
-        <div class="sidebar">
+        <div class="sidebar fade-in-up">
             <img src="profile.jpg" alt="Razie Alfiedan Bin Hamdan" class="profile-pic">
 
             <h1>Razie Alfiedan</h1>
@@ -442,14 +488,14 @@
 
         <div class="main-content">
             
-            <h2 class="section-header"><i class="fa-solid fa-user-tie"></i> Executive Summary</h2>
-            <p class="summary">
+            <h2 class="section-header fade-in-up"><i class="fa-solid fa-user-tie"></i> Executive Summary</h2>
+            <p class="summary fade-in-up">
                 Strategic and visually-driven Marketing & Communications Manager with over 14 years of experience blending creative direction with data-backed marketing strategies. Proven expertise in leading comprehensive campaigns, brand management, and public relations within the hospitality, real estate, and healthcare sectors. An insightful and empathetic leader who excels at translating complex brand narratives into engaging visual and written content that drives revenue, elevates public profile, and builds lasting client relationships.
             </p>
 
-            <h2 class="section-header"><i class="fa-solid fa-briefcase"></i> Professional Experience</h2>
+            <h2 class="section-header fade-in-up"><i class="fa-solid fa-briefcase"></i> Professional Experience</h2>
 
-            <div class="job">
+            <div class="job fade-in-up">
                 <div class="job-header">
                     <div class="company-title">Sutera Sanctuary Lodges <span class="role">| Marketing & Communications Manager</span></div>
                     <div class="date">Nov 2024 – Present</div>
@@ -462,7 +508,7 @@
                 </ul>
             </div>
 
-            <div class="job">
+            <div class="job fade-in-up">
                 <div class="job-header">
                     <div class="company-title">Gleneagles Hospital Kota Kinabalu <span class="role">| Assistant Manager, Marketing</span></div>
                     <div class="date">2023 – 2024</div>
@@ -474,7 +520,7 @@
                 </ul>
             </div>
 
-            <div class="job">
+            <div class="job fade-in-up">
                 <div class="job-header">
                     <div class="company-title">K.K.I.P. Sdn. Bhd. <span class="role">| Digital Marketing & Graphic Executive</span></div>
                     <div class="date">2021 – 2023</div>
@@ -486,7 +532,7 @@
                 </ul>
             </div>
 
-            <div class="job">
+            <div class="job fade-in-up">
                 <div class="job-header">
                     <div class="company-title">BT PRINT <span class="role">| Sales & Marketing Manager</span></div>
                     <div class="date">2018 – 2020</div>
@@ -497,7 +543,7 @@
                 </ul>
             </div>
 
-             <div class="job">
+             <div class="job fade-in-up">
                 <div class="job-header">
                     <div class="company-title">Gleneagles Hospital Kota Kinabalu <span class="role">| Graphic Designer & Event Organizer</span></div>
                     <div class="date">2016 – 2018</div>
@@ -508,7 +554,7 @@
                 </ul>
             </div>
 
-            <div class="job">
+            <div class="job fade-in-up">
                 <div class="job-header">
                     <div class="company-title">MY-LANGUAGE <span class="role">| Art Director</span></div>
                     <div class="date">2015</div>
@@ -519,7 +565,7 @@
                 </ul>
             </div>
 
-            <div class="job">
+            <div class="job fade-in-up">
                 <div class="job-header">
                     <div class="company-title">Bandwidth Magazine <span class="role">| Graphic Designer</span></div>
                     <div class="date">2012 – 2015</div>
@@ -530,9 +576,9 @@
                 </ul>
             </div>
             
-            <h2 class="section-header" style="margin-top: 4rem;"><i class="fa-solid fa-graduation-cap"></i> Education</h2>
+            <h2 class="section-header fade-in-up" style="margin-top: 4rem;"><i class="fa-solid fa-graduation-cap"></i> Education</h2>
             
-            <div class="job">
+            <div class="job fade-in-up">
                 <div class="job-header">
                     <div class="company-title">Sabah Institute of Art <span class="role">| Diploma in Graphic Design</span></div>
                     <div class="date">2010 – 2013</div>
@@ -542,23 +588,23 @@
                 </ul>
             </div>
 
-            <div class="job">
+            <div class="job fade-in-up">
                 <div class="job-header">
                     <div class="company-title">Borneo T-shirt <span class="role">| T-Shirt Printing Course</span></div>
                     <div class="date">2015</div>
                 </div>
             </div>
 
-            <div class="job">
+            <div class="job fade-in-up">
                 <div class="job-header">
                     <div class="company-title">SMK Datuk Peter Mojuntin <span class="role">| SPM (5As)</span></div>
                     <div class="date">2005 – 2009</div>
                 </div>
             </div>
 
-            <h2 class="section-header" style="margin-top: 4rem;"><i class="fa-solid fa-certificate"></i> Professional Training</h2>
+            <h2 class="section-header fade-in-up" style="margin-top: 4rem;"><i class="fa-solid fa-certificate"></i> Professional Training</h2>
             
-            <div class="job">
+            <div class="job fade-in-up">
                 <div class="job-header">
                     <div class="company-title">Leadership Training <span class="role">| Learning Edge</span></div>
                     <div class="date">2024</div>
@@ -568,7 +614,7 @@
                 </ul>
             </div>
 
-            <div class="job">
+            <div class="job fade-in-up">
                 <div class="job-header">
                     <div class="company-title">Leader's Track Training Program <span class="role">| Learning Edge</span></div>
                     <div class="date">2026</div>
@@ -578,9 +624,9 @@
                 </ul>
             </div>
 
-            <h2 class="section-header" style="margin-top: 4rem;"><i class="fa-solid fa-hand-holding-heart"></i> Community & Additional Experience</h2>
+            <h2 class="section-header fade-in-up" style="margin-top: 4rem;"><i class="fa-solid fa-hand-holding-heart"></i> Community & Additional Experience</h2>
 
-            <div class="job">
+            <div class="job fade-in-up">
                 <div class="job-header">
                     <div class="company-title">Community Engagement & Volunteer Work</div>
                 </div>
@@ -591,7 +637,7 @@
                 </ul>
             </div>
 
-            <div class="job">
+            <div class="job fade-in-up">
                 <div class="job-header">
                     <div class="company-title">Entrepreneurial Ventures</div>
                     <div class="date">2020 – 2021</div>
@@ -602,27 +648,27 @@
                 </ul>
             </div>
 
-            <h2 class="section-header" style="margin-top: 4rem;"><i class="fa-solid fa-palette"></i> Selected Works & Portfolio</h2>
+            <h2 class="section-header fade-in-up" style="margin-top: 4rem;"><i class="fa-solid fa-palette"></i> Selected Works & Portfolio</h2>
 
-            <h3 style="margin-top: 2rem; margin-bottom: 1rem; text-transform: uppercase; border-bottom: 1px solid var(--secondary-border); padding-bottom: 0.5rem;">Featured Projects & Campaigns</h3>
+            <h3 class="fade-in-up" style="margin-top: 2rem; margin-bottom: 1rem; text-transform: uppercase; border-bottom: 1px solid var(--secondary-border); padding-bottom: 0.5rem;">Featured Projects & Campaigns</h3>
             
-            <div class="slider-wrapper">
+            <div class="slider-wrapper fade-in-up">
                 <button class="slider-btn prev-btn"><i class="fa-solid fa-chevron-left"></i></button>
                 <div class="slider-container" id="slider-portfolio"></div>
                 <button class="slider-btn next-btn"><i class="fa-solid fa-chevron-right"></i></button>
             </div>
             
-            <div class="thumbnail-wrapper">
+            <div class="thumbnail-wrapper fade-in-up">
                 <button class="thumb-btn thumb-prev-btn"><i class="fa-solid fa-chevron-left"></i></button>
                 <div class="thumbnail-strip" id="thumbnails-portfolio"></div>
                 <button class="thumb-btn thumb-next-btn"><i class="fa-solid fa-chevron-right"></i></button>
             </div>
 
-            <h2 class="section-header" style="margin-top: 2rem;"><i class="fa-solid fa-users"></i> References</h2>
+            <h2 class="section-header fade-in-up" style="margin-top: 2rem;"><i class="fa-solid fa-users"></i> References</h2>
             
-            <div class="referee-grid">
+            <div class="referee-grid fade-in-up">
                 <div class="referee">
-                    <div class="company-title" style="margin-bottom: 0.2rem;">Jacqueline Chin</div>
+                    <div class="company-title" style="margin-bottom: 0.2rem;">Jacquelin Chin</div>
                     <div class="role" style="display: block; font-size: 0.95rem; margin-bottom: 0.5rem; color: var(--text-main); font-weight: normal; font-style: normal;">Former General Manager, Sutera Sanctuary Lodges</div>
                     <div class="contact-links">
                         <a href="mailto:jaclyndsy@yahoo.com" style="font-weight: normal; font-size: 0.85rem;"><i class="fa-solid fa-envelope"></i> jaclyndsy@yahoo.com</a>
@@ -641,6 +687,12 @@
 
         </div>
     </div>
+
+    <footer class="site-footer">
+        <button class="back-to-top" id="backToTopBtn">
+            <i class="fa-solid fa-arrow-up"></i> Back To Top
+        </button>
+    </footer>
 
     <script>
         // --- THE AUTO LOADER & THUMBNAILS ---
@@ -740,6 +792,41 @@
                 });
             }
         });
+
+        // =========================================
+        // NEW: SCROLL ANIMATIONS (Intersection Observer)
+        // =========================================
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1 // Triggers when 10% of the element is visible
+        };
+
+        const scrollObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                    observer.unobserve(entry.target); // Stop observing once it's visible
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in-up').forEach(el => {
+            scrollObserver.observe(el);
+        });
+
+        // =========================================
+        // NEW: BACK TO TOP BUTTON LOGIC
+        // =========================================
+        const backToTopBtn = document.getElementById('backToTopBtn');
+        if (backToTopBtn) {
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
     </script>
 </body>
 </html>
