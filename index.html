@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Razie Alfiedan | Marketing, Communications & Visual Art</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* CSS Variables mapping the 60-30-10 Rule */
+        :root {
+            --bg-color: #ffffff;         /* The Canvas */
+            --text-main: #000000;        /* 60% - Dominant structural color */
+            --secondary-bg: #E0E0E0;     /* 30% - Platinum for framing and subtle depth */
+            --secondary-border: #A9A9A9; /* 30% - Dark Gray for softer lines */
+            --accent-red: #8B0000;       /* 10% - Dark Red for highlights and action */
+        }
+
+        /* Base Typography and Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Grid Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            display: grid;
+            grid-template-columns: 1fr 2.5fr;
+            gap: 4rem;
+        }
+
+        /* Left Column (Header & Sidebar) */
+        .sidebar {
+            border-right: 2px solid var(--text-main); 
+            padding-right: 2rem;
+        }
+
+        /* Profile Picture Styling */
+        .profile-pic {
+            width: 100%;
+            max-width: 250px;
+            aspect-ratio: 2 / 3;
+            object-fit: cover;
+            border-radius: 0; 
+            margin-bottom: 2rem;
+            border: 2px solid var(--text-main);
+            filter: grayscale(100%);
+            transition: all 0.4s ease;
+        }
+
+        .profile-pic:hover {
+            filter: grayscale(0%);
+            border-color: var(--accent-red); 
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.1;
+            text-transform: uppercase;
+            letter-spacing: -0.05rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+
+        .job-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+            margin-bottom: 3rem;
+            display: block;
+            color: var(--secondary-border); 
+        }
+
+        .contact-info, .skills-section {
+            margin-bottom: 3rem;
+        }
+
+        .sidebar h3 {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+            border-bottom: 1px solid var(--secondary-border);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .sidebar p, .sidebar li {
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            list-style: none;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .sidebar li i {
+            margin-top: 0.25rem;
+            color: var(--secondary-border);
+            font-size: 0.8rem;
+        }
+
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .contact-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .contact-links a i {
+            font-size: 1.1rem;
+            color: var(--secondary-border);
+            transition: color 0.2s ease;
+            width: 20px;
+            text-align: center;
+        }
+
+        /* 10% Accent Color on Interactive Elements */
+        .contact-links a:hover, .contact-links a:hover i {
+            color: var(--accent-red); 
+        }
+
+        /* Right Column (Main Content) */
+        .main-content {}
+
+        .section-header {
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05rem;
+            border-bottom: 2px solid var(--text-main);
+            padding-bottom: 0.5rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .section-header i {
+            color: var(--secondary-border);
+        }
+
+        .summary {
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+        }
+
+        .job {
+            margin-bottom: 2.5rem;
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.5rem;
+        }
+
+        .company-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .role {
+            font-style: italic;
+            font-weight: normal;
+            color: var(--secondary-border); 
+        }
+
+        .date {
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--accent-red); 
+        }
+
+        ul.job-details {
+            padding-left: 1.2rem;
+        }
+
+        ul.job-details li {
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        /* Image Slider Styling */
+        .slider-wrapper {
+            position: relative;
+            margin-bottom: 4rem;
+            border: 1px solid var(--secondary-border); 
+            background: var(--secondary-bg); 
+            transition: border-color 0.3s ease;
+        }
+
+        .slider-wrapper:hover {
+            border-color: var(--text-main);
+        }
+
+        .slider-container {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none; 
+        }
+        
+        .slider-container::-webkit-scrollbar {
+            display: none; 
+        }
+
+        .slider-container img {
+            width: 100%;
+            height: 600px; /* Made slightly taller since it's the main presentation block */
+            object-fit: contain; 
+            flex-shrink: 0;
+            scroll-snap-align: start;
+            padding: 1rem;
+            filter: grayscale(0%);
+            transition: filter 0.4s ease;
+        }
+
+        .slider-container img:hover {
+            filter: grayscale(0%);
+        }
+
+        /* Slider Navigation Buttons */
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--text-main);
+            color: var(--bg-color);
+            border: none;
+            width: 45px;
+            height: 45px;
+            cursor: pointer;
+            z-index: 10;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s ease;
+        }
+
+        .slider-btn:hover {
+            background: var(--accent-red);
+        }
+
+        .prev-btn { left: 0; }
+        .next-btn { right: 0; }
+
+        /* Responsive Design for Mobile */
+        @media (max-width: 900px) {
+            .container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 2rem 1rem;
+            }
+
+            .sidebar {
+                border-right: none;
+                border-bottom: 2px solid var(--text-main);
+                padding-right: 0;
+                padding-bottom: 2rem;
+            }
+            
+            .job-header {
+                flex-direction: column;
+            }
+            
+            .date {
+                margin-top: 0.2rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .slider-container img {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="sidebar">
+            <img src="profile.jpg" alt="Razie Alfiedan Bin Hamdan" class="profile-pic">
+
+            <h1>Razie Alfiedan</h1>
+            <span class="job-title">Marketing, Communications & Visual Art</span>
+
+            <div class="contact-info">
+                <h3><i class="fa-solid fa-address-card"></i> Contact & Socials</h3>
+                <p style="margin-bottom: 1rem;"><i class="fa-solid fa-location-dot" style="color: var(--secondary-border); margin-top: 4px;"></i> Penampang, Sabah, Malaysia</p>
+                <div class="contact-links">
+                    <a href="mailto:razie.alfiedan@gmail.com"><i class="fa-solid fa-envelope"></i> razie.alfiedan@gmail.com</a>
+                    <a href="tel:+60128218280"><i class="fa-solid fa-phone"></i> +60 12-821 8280</a>
+                    <a href="https://www.linkedin.com/in/raziealfiedan/" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+                    <a href="https://www.instagram.com/raziealfiedan/" target="_blank"><i class="fa-brands fa-instagram"></i> Instagram</a>
+                    <a href="https://www.youtube.com/@nuaie" target="_blank"><i class="fa-brands fa-youtube"></i> YouTube</a>
+                    <a href="https://www.facebook.com/razie.alfiedan/" target="_blank"><i class="fa-brands fa-square-facebook"></i> Facebook</a>
+                    <a href="https://www.tiktok.com/@raziealfiedan" target="_blank"><i class="fa-brands fa-tiktok"></i> TikTok</a>
+                </div>
+            </div>
+
+            <div class="skills-section">
+                <h3><i class="fa-solid fa-bullseye"></i> Core Competencies</h3>
+                <ul>
+                    <li><i class="fa-solid fa-check"></i> Brand Management</li>
+                    <li><i class="fa-solid fa-check"></i> Public Relations</li>
+                    <li><i class="fa-solid fa-check"></i> Strategic Planning</li>
+                    <li><i class="fa-solid fa-check"></i> Project Management</li>
+                    <li><i class="fa-solid fa-check"></i> Art Direction</li>
+                    <li><i class="fa-solid fa-check"></i> UI/UX Concepts</li>
+                    <li><i class="fa-solid fa-check"></i> Content Strategy</li>
+                    <li><i class="fa-solid fa-check"></i> Analytics & Reporting</li>
+                </ul>
+            </div>
+
+            <div class="skills-section">
+                <h3><i class="fa-solid fa-laptop-code"></i> Technical Skills</h3>
+                <ul>
+                    <li><i class="fa-solid fa-pen-nib"></i> Adobe Creative Suite</li>
+                    <li style="padding-left: 1.5rem; font-size: 0.85rem; color: var(--secondary-border);">(Illustrator, Photoshop, InDesign, Premiere Pro, After Effects)</li>
+                    <li><i class="fa-solid fa-cube"></i> SketchUp</li>
+                    <li><i class="fa-solid fa-microchip"></i> AI Prompting & Strategy</li>
+                    <li style="padding-left: 1.5rem; font-size: 0.85rem; color: var(--secondary-border);">(Gemini, ChatGPT)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="main-content">
+            
+            <h2 class="section-header"><i class="fa-solid fa-user-tie"></i> Executive Summary</h2>
+            <p class="summary">
+                Strategic and visually-driven Marketing & Communications Manager with over 12 years of experience blending creative direction with data-backed marketing strategies. Proven expertise in leading comprehensive campaigns, brand management, and public relations within the hospitality, real estate, and healthcare sectors. An insightful and empathetic leader who excels at translating complex brand narratives into engaging visual and written content that drives revenue, elevates public profile, and builds lasting client relationships.
+            </p>
+
+            <h2 class="section-header"><i class="fa-solid fa-briefcase"></i> Professional Experience</h2>
+
+            <div class="job">
+                <div class="job-header">
+                    <div class="company-title">Sutera Sanctuary Lodges <span class="role">| Marketing & Communications Manager</span></div>
+                    <div class="date">Nov 2024 – Present</div>
+                </div>
+                <ul class="job-details">
+                    <li>Spearheaded public relations and brand communication for the 'Sutera Sanctuary' and 'Sutera Horizon' portfolios (including Laban Rata Resthouse), notably authoring the successful submissions for the Sabah Tourism Awards.</li>
+                    <li>Managed end-to-end digital marketing and social media ecosystems, driving engagement through optimized website content and dynamic video production (TikTok/Reels).</li>
+                    <li>Led the conceptualization and graphic design of all property-level marketing collateral, encompassing promotional campaigns, menus, and environmental signage.</li>
+                    <li>Cultivated strategic partnerships by liaising with media and Key Opinion Leaders (KOLs) to coordinate high-impact familiarization (FAM) trips and property reviews.</li>
+                </ul>
+            </div>
+
+            <div class="job">
+                <div class="job-header">
+                    <div class="company-title">Gleneagles Hospital Kota Kinabalu <span class="role">| Assistant Manager, Marketing</span></div>
+                    <div class="date">2023 – 2024</div>
+                </div>
+                <ul class="job-details">
+                    <li>Directed the marketing department in developing comprehensive annual strategies, budget planning, and resource allocation.</li>
+                    <li>Spearheaded high-impact healthcare campaigns (including "Strike Out Stroke", Children’s Day, and regional CSR initiatives), significantly increasing community engagement and brand visibility.</li>
+                    <li>Produced targeted visual and written content across various medical specialties, directly contributing to the successful achievement of the hospital's monthly revenue forecasts.</li>
+                </ul>
+            </div>
+
+            <div class="job">
+                <div class="job-header">
+                    <div class="company-title">K.K.I.P. Sdn. Bhd. <span class="role">| Digital Marketing & Graphic Executive</span></div>
+                    <div class="date">2021 – 2023</div>
+                </div>
+                <ul class="job-details">
+                    <li>Played a pivotal role in the V21 Residence property launch, executing digital marketing strategies that contributed to generating RM100 million in sales within six months.</li>
+                    <li>Managed the comprehensive digital marketing ecosystem, including website administration, SEO optimization, and social media channel growth.</li>
+                    <li>Led the end-to-end conceptualization, graphic design, and copywriting for all digital and print marketing collateral.</li>
+                </ul>
+            </div>
+
+            <div class="job">
+                <div class="job-header">
+                    <div class="company-title">BT PRINT <span class="role">| Sales & Marketing Manager</span></div>
+                    <div class="date">2018 – 2020</div>
+                </div>
+                <ul class="job-details">
+                    <li>Drove B2B and B2C sales strategies, consistently meeting and exceeding monthly revenue targets.</li>
+                    <li>Conceptualized and executed successful promotional campaigns and digital marketing initiatives to expand market reach and client acquisition.</li>
+                </ul>
+            </div>
+
+             <div class="job">
+                <div class="job-header">
+                    <div class="company-title">Gleneagles Hospital Kota Kinabalu <span class="role">| Graphic Designer & Event Organizer</span></div>
+                    <div class="date">2016 – 2018</div>
+                </div>
+                <ul class="job-details">
+                    <li>Designed engaging marketing collateral and maintained strict visual brand consistency across all hospital communications.</li>
+                    <li>Coordinated large-scale corporate and public health events, seamlessly integrating in-house photography and videography services.</li>
+                </ul>
+            </div>
+
+            <div class="job">
+                <div class="job-header">
+                    <div class="company-title">MY-LANGUAGE <span class="role">| Art Director</span></div>
+                    <div class="date">2015</div>
+                </div>
+                <ul class="job-details">
+                    <li>Directed the overall visual brand and content strategy for the organization.</li>
+                    <li>Conceptualized and produced engaging educational materials, animations, and digital content.</li>
+                </ul>
+            </div>
+
+            <div class="job">
+                <div class="job-header">
+                    <div class="company-title">Bandwidth Magazine <span class="role">| Graphic Designer</span></div>
+                    <div class="date">2012 – 2015</div>
+                </div>
+                <ul class="job-details">
+                    <li>Executed editorial design, creating dynamic magazine layouts, articles, and promotional collateral.</li>
+                    <li>Actively participated in field event coverage and conducted interviews to support editorial content.</li>
+                </ul>
+            </div>
+            
+            <h2 class="section-header" style="margin-top: 4rem;"><i class="fa-solid fa-graduation-cap"></i> Education</h2>
+            
+            <div class="job">
+                <div class="job-header">
+                    <div class="company-title">Sabah Institute of Art <span class="role">| Diploma in Graphic Design</span></div>
+                    <div class="date">2010 – 2013</div>
+                </div>
+                <ul class="job-details">
+                    <li>Awarded Most Promising Student (2013).</li>
+                </ul>
+            </div>
+
+            <div class="job">
+                <div class="job-header">
+                    <div class="company-title">Borneo T-shirt <span class="role">| T-Shirt Printing Course</span></div>
+                    <div class="date">2015</div>
+                </div>
+            </div>
+
+            <div class="job">
+                <div class="job-header">
+                    <div class="company-title">SMK Datuk Peter Mojuntin <span class="role">| SPM (5As)</span></div>
+                    <div class="date">2005 – 2009</div>
+                </div>
+            </div>
+
+            <h2 class="section-header" style="margin-top: 4rem;"><i class="fa-solid fa-hand-holding-heart"></i> Community & Additional Experience</h2>
+
+            <div class="job">
+                <div class="job-header">
+                    <div class="company-title">Community Engagement & Volunteer Work</div>
+                </div>
+                <ul class="job-details">
+                    <li><strong>Fundraising for Mountain Guides:</strong> Raised RM5,000 for Sabah earthquake-affected guides through dedicated art sales.</li>
+                    <li><strong>Sabah Heart Fund:</strong> Raised RM1,000 through commissioned portrait painting sales to provide critical healthcare aid.</li>
+                    <li><strong>Sabah Art Gallery:</strong> Active participant in the Weekly Art Workshops, engaging with the local creative community.</li>
+                </ul>
+            </div>
+
+            <div class="job">
+                <div class="job-header">
+                    <div class="company-title">Entrepreneurial Ventures</div>
+                    <div class="date">2020 – 2021</div>
+                </div>
+                <ul class="job-details">
+                    <li>Adapted to the global pandemic by independently operating a small business selling fruits and juices to maintain financial stability.</li>
+                    <li>Sold commissioned portrait paintings and organized community fitness classes, showcasing adaptability and self-driven initiative.</li>
+                </ul>
+            </div>
+
+            <h2 class="section-header" style="margin-top: 4rem;"><i class="fa-solid fa-palette"></i> Selected Works & Portfolio</h2>
+
+            <h3 style="margin-top: 2rem; margin-bottom: 1rem; text-transform: uppercase; border-bottom: 1px solid var(--secondary-border); padding-bottom: 0.5rem;">Featured Projects & Campaigns</h3>
+            <div class="slider-wrapper">
+                <button class="slider-btn prev-btn"><i class="fa-solid fa-chevron-left"></i></button>
+                <div class="slider-container" id="slider-portfolio">
+                    </div>
+                <button class="slider-btn next-btn"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // --- THE AUTO LOADER ---
+        // This script looks for images named 1.jpg, 2.jpg, etc., up to 50.
+        const maxImages = 50; 
+        const categories = ['portfolio'];
+
+        categories.forEach(category => {
+            const container = document.getElementById(`slider-${category}`);
+            if (!container) return;
+
+            for (let i = 1; i <= maxImages; i++) {
+                const img = document.createElement('img');
+                img.src = `images/${category}/${i}.jpg`; 
+                img.alt = `Portfolio slide ${i}`;
+
+                img.onerror = function() {
+                    this.remove();
+                };
+
+                container.appendChild(img);
+            }
+        });
+
+        // --- THE SLIDER ARROWS ---
+        document.querySelectorAll('.slider-wrapper').forEach(wrapper => {
+            const container = wrapper.querySelector('.slider-container');
+            const prevBtn = wrapper.querySelector('.prev-btn');
+            const nextBtn = wrapper.querySelector('.next-btn');
+
+            nextBtn.addEventListener('click', () => {
+                const scrollAmount = container.clientWidth;
+                container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            });
+
+            prevBtn.addEventListener('click', () => {
+                const scrollAmount = container.clientWidth;
+                container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
