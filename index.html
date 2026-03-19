@@ -18,6 +18,16 @@
             --text-platinum: #8A8D8F;    /* Adjusted metallic platinum for text readability */
         }
 
+        /* Dark Mode Override Variables */
+        body.dark-mode {
+            --bg-color: #121212;         /* Deep dark background */
+            --text-main: #f0f0f0;        /* Off-white text for high contrast */
+            --secondary-bg: #222222;     /* Darker frames */
+            --secondary-border: #444444; /* Muted dark gray lines */
+            --accent-red: #e53935;       /* Brighter red to pop against the dark canvas */
+            --text-platinum: #b0b3b5;    /* Lighter gray for secondary text */
+        }
+
         /* Base Typography and Reset */
         * {
             margin: 0;
@@ -31,6 +41,34 @@
             color: var(--text-main);
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
+            /* Added transition for smooth dark mode toggling */
+            transition: background-color 0.4s ease, color 0.4s ease; 
+        }
+
+        /* Dark Mode Toggle Button */
+        .dark-mode-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: var(--text-main);
+            color: var(--bg-color);
+            border: none;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease, background-color 0.4s ease, color 0.4s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .dark-mode-btn:hover {
+            transform: scale(1.1);
+            background-color: var(--accent-red);
         }
 
         /* Grid Layout */
@@ -47,6 +85,7 @@
         .sidebar {
             border-right: 2px solid var(--text-main); 
             padding-right: 2rem;
+            transition: border-color 0.4s ease;
         }
 
         /* Profile Picture Styling */
@@ -91,6 +130,7 @@
             margin-bottom: 3rem;
             display: block;
             color: var(--secondary-border); 
+            transition: color 0.4s ease;
         }
 
         .contact-info, .skills-section {
@@ -108,6 +148,7 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            transition: border-color 0.4s ease, color 0.4s ease;
         }
 
         .sidebar p, .sidebar li {
@@ -123,6 +164,7 @@
             margin-top: 0.25rem;
             color: var(--secondary-border);
             font-size: 0.8rem;
+            transition: color 0.4s ease;
         }
 
         .contact-links {
@@ -170,10 +212,12 @@
             display: flex;
             align-items: center;
             gap: 0.8rem;
+            transition: border-color 0.4s ease;
         }
 
         .section-header i {
             color: var(--secondary-border);
+            transition: color 0.4s ease;
         }
 
         .summary {
@@ -201,6 +245,7 @@
             font-style: italic;
             font-weight: 600;
             color: var(--accent-red); 
+            transition: color 0.4s ease;
         }
 
         .date {
@@ -208,6 +253,7 @@
             font-weight: 700;
             text-transform: uppercase;
             color: var(--text-platinum); 
+            transition: color 0.4s ease;
         }
 
         ul.job-details {
@@ -225,7 +271,7 @@
             margin-bottom: 1rem;
             border: 1px solid var(--secondary-border); 
             background: var(--secondary-bg); 
-            transition: border-color 0.3s ease;
+            transition: border-color 0.3s ease, background-color 0.4s ease;
         }
 
         .slider-wrapper:hover {
@@ -272,7 +318,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background 0.2s ease;
+            transition: background 0.2s ease, color 0.4s ease;
         }
 
         .slider-btn:hover {
@@ -355,9 +401,7 @@
             margin-bottom: 2rem;
         }
 
-        /* =========================================
-           NEW: Scroll Animation Classes 
-           ========================================= */
+        /* Scroll Animation Classes */
         .fade-in-up {
             opacity: 0;
             transform: translateY(30px);
@@ -370,21 +414,20 @@
             transform: translateY(0);
         }
 
-        /* =========================================
-           NEW: Footer & Back to Top Bar 
-           ========================================= */
+        /* Footer & Back to Top Bar */
         .site-footer {
-            background-color: #000000;
-            color: #ffffff;
+            background-color: var(--text-main);
+            color: var(--bg-color);
             text-align: center;
             padding: 3rem 1rem;
             margin-top: 4rem;
+            transition: background-color 0.4s ease, color 0.4s ease;
         }
 
         .back-to-top {
             background-color: transparent;
-            color: #ffffff;
-            border: 1px solid #ffffff;
+            color: var(--bg-color);
+            border: 1px solid var(--bg-color);
             padding: 0.8rem 1.5rem;
             font-size: 0.9rem;
             font-weight: 600;
@@ -400,6 +443,7 @@
         .back-to-top:hover {
             background-color: var(--accent-red);
             border-color: var(--accent-red);
+            color: #ffffff;
         }
 
         /* Responsive Design for Mobile */
@@ -438,10 +482,14 @@
 </head>
 <body>
 
+    <button id="darkModeToggle" class="dark-mode-btn" aria-label="Toggle Dark Mode">
+        <i class="fa-solid fa-moon"></i>
+    </button>
+
     <div class="container">
         
         <div class="sidebar fade-in-up">
-            <img src="profile.jpg" alt="Razie Alfiedan Bin Hamdan" class="profile-pic">
+            <img src="profile.jpg" alt="Razie Alfiedan" class="profile-pic">
 
             <h1>Razie Alfiedan</h1>
             <span class="job-title">Marketing, Communications & Visual Art</span>
@@ -695,7 +743,38 @@
     </footer>
 
     <script>
-        // --- THE AUTO LOADER & THUMBNAILS ---
+        // =========================================
+        // DARK MODE LOGIC
+        // =========================================
+        const darkModeBtn = document.getElementById('darkModeToggle');
+        const icon = darkModeBtn.querySelector('i');
+        const body = document.body;
+
+        // Check local storage for existing preference
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            body.classList.add('dark-mode');
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        }
+
+        // Toggle functionality
+        darkModeBtn.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            
+            if (body.classList.contains('dark-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+                localStorage.setItem('darkMode', 'disabled');
+            }
+        });
+
+        // =========================================
+        // IMAGE SLIDER & THUMBNAILS LOGIC
+        // =========================================
         const maxImages = 50; 
         const categories = ['portfolio'];
 
@@ -715,10 +794,9 @@
                 thumb.src = `images/${category}/${i}.jpg`;
                 thumb.alt = `Thumbnail ${i}`;
 
-                if (i === 1) thumb.classList.add('active'); // Set the first thumbnail as active initially
+                if (i === 1) thumb.classList.add('active');
 
                 img.onerror = function() {
-                    // Remove both if the source doesn't exist
                     this.remove();
                     thumb.remove();
                 };
@@ -728,7 +806,6 @@
                 if (thumbContainer) {
                     thumbContainer.appendChild(thumb);
                     
-                    // Click thumbnail to scroll to the corresponding image
                     thumb.onclick = () => {
                         const scrollAmount = img.offsetLeft;
                         container.scrollTo({ left: scrollAmount, behavior: 'smooth' });
@@ -736,18 +813,15 @@
                 }
             }
 
-            // Sync active thumbnail with main slider scroll
             container.addEventListener('scroll', () => {
                 if (!thumbContainer) return;
                 
-                // Calculate which image index is currently in view
                 let index = Math.round(container.scrollLeft / container.clientWidth);
                 const thumbs = thumbContainer.querySelectorAll('img');
                 
                 thumbs.forEach((t, idx) => {
                     if (idx === index) {
                         t.classList.add('active');
-                        // Gently scroll the thumbnail strip to keep the active thumb in view
                         t.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
                     } else {
                         t.classList.remove('active');
@@ -756,7 +830,7 @@
             });
         });
 
-        // --- MAIN SLIDER ARROWS ---
+        // Main Slider Arrows
         document.querySelectorAll('.slider-wrapper').forEach(wrapper => {
             const container = wrapper.querySelector('.slider-container');
             const prevBtn = wrapper.querySelector('.prev-btn');
@@ -773,7 +847,7 @@
             });
         });
 
-        // --- THUMBNAIL SLIDER ARROWS ---
+        // Thumbnail Slider Arrows
         document.querySelectorAll('.thumbnail-wrapper').forEach(wrapper => {
             const thumbContainer = wrapper.querySelector('.thumbnail-strip');
             const thumbPrevBtn = wrapper.querySelector('.thumb-prev-btn');
@@ -781,7 +855,6 @@
 
             if(thumbNextBtn && thumbContainer) {
                 thumbNextBtn.addEventListener('click', () => {
-                    // Scroll by roughly 4 thumbnail widths
                     thumbContainer.scrollBy({ left: 340, behavior: 'smooth' });
                 });
             }
@@ -794,19 +867,19 @@
         });
 
         // =========================================
-        // NEW: SCROLL ANIMATIONS (Intersection Observer)
+        // SCROLL ANIMATIONS (Intersection Observer)
         // =========================================
         const observerOptions = {
             root: null,
             rootMargin: '0px',
-            threshold: 0.1 // Triggers when 10% of the element is visible
+            threshold: 0.1
         };
 
         const scrollObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('in-view');
-                    observer.unobserve(entry.target); // Stop observing once it's visible
+                    observer.unobserve(entry.target);
                 }
             });
         }, observerOptions);
@@ -816,7 +889,7 @@
         });
 
         // =========================================
-        // NEW: BACK TO TOP BUTTON LOGIC
+        // BACK TO TOP BUTTON LOGIC
         // =========================================
         const backToTopBtn = document.getElementById('backToTopBtn');
         if (backToTopBtn) {
