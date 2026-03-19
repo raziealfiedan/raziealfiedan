@@ -41,7 +41,6 @@
             color: var(--text-main);
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
-            /* Added transition for smooth dark mode toggling */
             transition: background-color 0.4s ease, color 0.4s ease; 
         }
 
@@ -88,7 +87,6 @@
             transition: border-color 0.4s ease;
         }
 
-        /* Profile Picture Styling */
         .profile-pic {
             width: 100%;
             max-width: 250px;
@@ -118,9 +116,7 @@
             cursor: default;
         }
 
-        h1:hover {
-            color: var(--accent-red);
-        }
+        h1:hover { color: var(--accent-red); }
 
         .job-title {
             font-size: 1.1rem;
@@ -133,9 +129,7 @@
             transition: color 0.4s ease;
         }
 
-        .contact-info, .skills-section {
-            margin-bottom: 3rem;
-        }
+        .contact-info, .skills-section { margin-bottom: 3rem; }
 
         .sidebar h3 {
             font-size: 1rem;
@@ -197,9 +191,7 @@
         }
 
         /* Right Column (Main Content) */
-        .main-content {
-            min-width: 0;
-        }
+        .main-content { min-width: 0; }
 
         .section-header {
             font-size: 1.5rem;
@@ -220,14 +212,9 @@
             transition: color 0.4s ease;
         }
 
-        .summary {
-            font-size: 1.1rem;
-            margin-bottom: 3rem;
-        }
+        .summary { font-size: 1.1rem; margin-bottom: 3rem; }
 
-        .job {
-            margin-bottom: 2.5rem;
-        }
+        .job { margin-bottom: 2.5rem; }
 
         .job-header {
             display: flex;
@@ -236,10 +223,7 @@
             margin-bottom: 0.5rem;
         }
 
-        .company-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-        }
+        .company-title { font-size: 1.2rem; font-weight: 700; }
 
         .role {
             font-style: italic;
@@ -256,14 +240,8 @@
             transition: color 0.4s ease;
         }
 
-        ul.job-details {
-            padding-left: 1.2rem;
-        }
-
-        ul.job-details li {
-            margin-bottom: 0.5rem;
-            font-size: 1rem;
-        }
+        ul.job-details { padding-left: 1.2rem; }
+        ul.job-details li { margin-bottom: 0.5rem; font-size: 1rem; }
 
         /* Main Image Slider Styling */
         .slider-wrapper {
@@ -274,9 +252,7 @@
             transition: border-color 0.3s ease, background-color 0.4s ease;
         }
 
-        .slider-wrapper:hover {
-            border-color: var(--text-main);
-        }
+        .slider-wrapper:hover { border-color: var(--text-main); }
 
         .slider-container {
             display: flex;
@@ -287,9 +263,7 @@
             scrollbar-width: none; 
         }
         
-        .slider-container::-webkit-scrollbar {
-            display: none; 
-        }
+        .slider-container::-webkit-scrollbar { display: none; }
 
         .slider-container img {
             width: 100%;
@@ -298,7 +272,6 @@
             flex-shrink: 0;
             scroll-snap-align: start;
             padding: 1rem;
-            filter: grayscale(0%);
             transition: filter 0.4s ease;
         }
 
@@ -321,9 +294,7 @@
             transition: background 0.2s ease, color 0.4s ease;
         }
 
-        .slider-btn:hover {
-            background: var(--accent-red);
-        }
+        .slider-btn:hover { background: var(--accent-red); }
 
         .prev-btn { left: 0; }
         .next-btn { right: 0; }
@@ -335,7 +306,6 @@
             margin-bottom: 4rem;
         }
 
-        /* Thumbnail Strip Styling */
         .thumbnail-strip {
             display: flex;
             gap: 0.5rem;
@@ -346,9 +316,7 @@
             scroll-behavior: smooth;
         }
 
-        .thumbnail-strip::-webkit-scrollbar {
-            display: none;
-        }
+        .thumbnail-strip::-webkit-scrollbar { display: none; }
 
         .thumbnail-strip img {
             width: 80px;
@@ -367,7 +335,6 @@
             opacity: 1;
         }
 
-        /* Thumbnail Mini Navigation Buttons */
         .thumb-btn {
             position: absolute;
             top: 50%;
@@ -386,10 +353,7 @@
             transition: background 0.2s ease;
         }
 
-        .thumb-btn:hover {
-            background: var(--accent-red);
-        }
-
+        .thumb-btn:hover { background: var(--accent-red); }
         .thumb-prev-btn { left: 0; }
         .thumb-next-btn { right: 0; }
 
@@ -414,7 +378,7 @@
             transform: translateY(0);
         }
 
-        /* Footer & Back to Top Bar */
+        /* Footer & Buttons */
         .site-footer {
             background-color: var(--text-main);
             color: var(--bg-color);
@@ -448,35 +412,26 @@
 
         /* Responsive Design for Mobile */
         @media (max-width: 900px) {
-            .container {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-                padding: 2rem 1rem;
-            }
+            .container { grid-template-columns: 1fr; gap: 2rem; padding: 2rem 1rem; }
+            .sidebar { border-right: none; border-bottom: 2px solid var(--text-main); padding-right: 0; padding-bottom: 2rem; }
+            .job-header { flex-direction: column; }
+            .date { margin-top: 0.2rem; margin-bottom: 0.5rem; }
+            .slider-container img { height: 400px; }
+            .referee-grid { grid-template-columns: 1fr; }
+        }
 
-            .sidebar {
-                border-right: none;
-                border-bottom: 2px solid var(--text-main);
-                padding-right: 0;
-                padding-bottom: 2rem;
-            }
-            
-            .job-header {
-                flex-direction: column;
-            }
-            
-            .date {
-                margin-top: 0.2rem;
-                margin-bottom: 0.5rem;
-            }
-
-            .slider-container img {
-                height: 400px;
-            }
-
-            .referee-grid {
-                grid-template-columns: 1fr;
-            }
+        /* ========================================= */
+        /* PRINT & PDF EXPORT STYLES                 */
+        /* ========================================= */
+        @media print {
+            #portfolio-section, .site-footer, .dark-mode-btn { display: none !important; }
+            body { background-color: #ffffff !important; color: #000000 !important; }
+            .sidebar { border-right-color: #000000 !important; }
+            h1, h2, h3, a, .job-title { color: #000000 !important; }
+            .fade-in-up { opacity: 1 !important; transform: none !important; transition: none !important; }
+            .container { padding: 0 !important; gap: 2rem !important; max-width: 100% !important; }
+            .job, .skills-section, .contact-info { page-break-inside: avoid; }
+            a { text-decoration: none !important; }
         }
     </style>
 </head>
@@ -696,20 +651,22 @@
                 </ul>
             </div>
 
-            <h2 class="section-header fade-in-up" style="margin-top: 4rem;"><i class="fa-solid fa-palette"></i> Selected Works & Portfolio</h2>
+            <div id="portfolio-section">
+                <h2 class="section-header fade-in-up" style="margin-top: 4rem;"><i class="fa-solid fa-palette"></i> Selected Works & Portfolio</h2>
 
-            <h3 class="fade-in-up" style="margin-top: 2rem; margin-bottom: 1rem; text-transform: uppercase; border-bottom: 1px solid var(--secondary-border); padding-bottom: 0.5rem;">Featured Projects & Campaigns</h3>
-            
-            <div class="slider-wrapper fade-in-up">
-                <button class="slider-btn prev-btn"><i class="fa-solid fa-chevron-left"></i></button>
-                <div class="slider-container" id="slider-portfolio"></div>
-                <button class="slider-btn next-btn"><i class="fa-solid fa-chevron-right"></i></button>
-            </div>
-            
-            <div class="thumbnail-wrapper fade-in-up">
-                <button class="thumb-btn thumb-prev-btn"><i class="fa-solid fa-chevron-left"></i></button>
-                <div class="thumbnail-strip" id="thumbnails-portfolio"></div>
-                <button class="thumb-btn thumb-next-btn"><i class="fa-solid fa-chevron-right"></i></button>
+                <h3 class="fade-in-up" style="margin-top: 2rem; margin-bottom: 1rem; text-transform: uppercase; border-bottom: 1px solid var(--secondary-border); padding-bottom: 0.5rem;">Featured Projects & Campaigns</h3>
+                
+                <div class="slider-wrapper fade-in-up">
+                    <button class="slider-btn prev-btn"><i class="fa-solid fa-chevron-left"></i></button>
+                    <div class="slider-container" id="slider-portfolio"></div>
+                    <button class="slider-btn next-btn"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+                
+                <div class="thumbnail-wrapper fade-in-up">
+                    <button class="thumb-btn thumb-prev-btn"><i class="fa-solid fa-chevron-left"></i></button>
+                    <div class="thumbnail-strip" id="thumbnails-portfolio"></div>
+                    <button class="thumb-btn thumb-next-btn"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
             </div>
 
             <h2 class="section-header fade-in-up" style="margin-top: 2rem;"><i class="fa-solid fa-users"></i> References</h2>
@@ -737,44 +694,44 @@
     </div>
 
     <footer class="site-footer">
-        <button class="back-to-top" id="backToTopBtn">
-            <i class="fa-solid fa-arrow-up"></i> Back To Top
-        </button>
+        <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+            <button class="back-to-top" id="downloadPdfBtn">
+                <i class="fa-solid fa-file-pdf"></i> Download Resume
+            </button>
+            <button class="back-to-top" id="backToTopBtn">
+                <i class="fa-solid fa-arrow-up"></i> Back To Top
+            </button>
+        </div>
     </footer>
 
     <script>
-        // =========================================
         // DARK MODE LOGIC
-        // =========================================
         const darkModeBtn = document.getElementById('darkModeToggle');
         const icon = darkModeBtn.querySelector('i');
         const body = document.body;
 
-        // Check local storage for existing preference
         if (localStorage.getItem('darkMode') === 'enabled') {
             body.classList.add('dark-mode');
-            icon.classList.remove('fa-moon');
-            icon.classList.add('fa-sun');
+            icon.classList.replace('fa-moon', 'fa-sun');
         }
 
-        // Toggle functionality
         darkModeBtn.addEventListener('click', () => {
             body.classList.toggle('dark-mode');
-            
-            if (body.classList.contains('dark-mode')) {
-                icon.classList.remove('fa-moon');
-                icon.classList.add('fa-sun');
-                localStorage.setItem('darkMode', 'enabled');
-            } else {
-                icon.classList.remove('fa-sun');
-                icon.classList.add('fa-moon');
-                localStorage.setItem('darkMode', 'disabled');
-            }
+            const isDark = body.classList.contains('dark-mode');
+            icon.classList.toggle('fa-sun', isDark);
+            icon.classList.toggle('fa-moon', !isDark);
+            localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
         });
 
-        // =========================================
+        // DOWNLOAD PDF LOGIC
+        const downloadPdfBtn = document.getElementById('downloadPdfBtn');
+        if (downloadPdfBtn) {
+            downloadPdfBtn.addEventListener('click', () => {
+                window.print();
+            });
+        }
+
         // IMAGE SLIDER & THUMBNAILS LOGIC
-        // =========================================
         const maxImages = 50; 
         const categories = ['portfolio'];
 
@@ -784,122 +741,66 @@
             if (!container) return;
 
             for (let i = 1; i <= maxImages; i++) {
-                // Main Image
                 const img = document.createElement('img');
                 img.src = `images/${category}/${i}.jpg`; 
                 img.alt = `Portfolio slide ${i}`;
                 
-                // Thumbnail Image
                 const thumb = document.createElement('img');
                 thumb.src = `images/${category}/${i}.jpg`;
                 thumb.alt = `Thumbnail ${i}`;
 
                 if (i === 1) thumb.classList.add('active');
 
-                img.onerror = function() {
-                    this.remove();
-                    thumb.remove();
-                };
+                img.onerror = function() { this.remove(); thumb.remove(); };
 
                 container.appendChild(img);
-                
                 if (thumbContainer) {
                     thumbContainer.appendChild(thumb);
-                    
                     thumb.onclick = () => {
-                        const scrollAmount = img.offsetLeft;
-                        container.scrollTo({ left: scrollAmount, behavior: 'smooth' });
+                        container.scrollTo({ left: img.offsetLeft, behavior: 'smooth' });
                     };
                 }
             }
 
             container.addEventListener('scroll', () => {
                 if (!thumbContainer) return;
-                
                 let index = Math.round(container.scrollLeft / container.clientWidth);
                 const thumbs = thumbContainer.querySelectorAll('img');
-                
                 thumbs.forEach((t, idx) => {
                     if (idx === index) {
                         t.classList.add('active');
                         t.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-                    } else {
-                        t.classList.remove('active');
-                    }
+                    } else { t.classList.remove('active'); }
                 });
             });
         });
 
-        // Main Slider Arrows
+        // Arrow Nav
         document.querySelectorAll('.slider-wrapper').forEach(wrapper => {
             const container = wrapper.querySelector('.slider-container');
-            const prevBtn = wrapper.querySelector('.prev-btn');
-            const nextBtn = wrapper.querySelector('.next-btn');
-
-            nextBtn.addEventListener('click', () => {
-                const scrollAmount = container.clientWidth;
-                container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-            });
-
-            prevBtn.addEventListener('click', () => {
-                const scrollAmount = container.clientWidth;
-                container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-            });
+            wrapper.querySelector('.next-btn').addEventListener('click', () => container.scrollBy({ left: container.clientWidth, behavior: 'smooth' }));
+            wrapper.querySelector('.prev-btn').addEventListener('click', () => container.scrollBy({ left: -container.clientWidth, behavior: 'smooth' }));
         });
 
-        // Thumbnail Slider Arrows
         document.querySelectorAll('.thumbnail-wrapper').forEach(wrapper => {
-            const thumbContainer = wrapper.querySelector('.thumbnail-strip');
-            const thumbPrevBtn = wrapper.querySelector('.thumb-prev-btn');
-            const thumbNextBtn = wrapper.querySelector('.thumb-next-btn');
-
-            if(thumbNextBtn && thumbContainer) {
-                thumbNextBtn.addEventListener('click', () => {
-                    thumbContainer.scrollBy({ left: 340, behavior: 'smooth' });
-                });
-            }
-
-            if(thumbPrevBtn && thumbContainer) {
-                thumbPrevBtn.addEventListener('click', () => {
-                    thumbContainer.scrollBy({ left: -340, behavior: 'smooth' });
-                });
-            }
+            const strip = wrapper.querySelector('.thumbnail-strip');
+            wrapper.querySelector('.thumb-next-btn')?.addEventListener('click', () => strip.scrollBy({ left: 340, behavior: 'smooth' }));
+            wrapper.querySelector('.thumb-prev-btn')?.addEventListener('click', () => strip.scrollBy({ left: -340, behavior: 'smooth' }));
         });
 
-        // =========================================
-        // SCROLL ANIMATIONS (Intersection Observer)
-        // =========================================
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
-        };
-
-        const scrollObserver = new IntersectionObserver((entries, observer) => {
+        // SCROLL ANIMATIONS
+        const scrollObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('in-view');
-                    observer.unobserve(entry.target);
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.1 });
 
-        document.querySelectorAll('.fade-in-up').forEach(el => {
-            scrollObserver.observe(el);
-        });
+        document.querySelectorAll('.fade-in-up').forEach(el => scrollObserver.observe(el));
 
-        // =========================================
-        // BACK TO TOP BUTTON LOGIC
-        // =========================================
-        const backToTopBtn = document.getElementById('backToTopBtn');
-        if (backToTopBtn) {
-            backToTopBtn.addEventListener('click', () => {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
-        }
+        // BACK TO TOP
+        document.getElementById('backToTopBtn')?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
     </script>
 </body>
 </html>
