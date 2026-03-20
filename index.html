@@ -418,6 +418,39 @@
         .thumb-prev-btn { left: 0; }
         .thumb-next-btn { right: 0; }
 
+        /* Video Productions Grid */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            width: 100%;
+            border: 1px solid var(--secondary-border);
+            background-color: var(--secondary-bg);
+            transition: border-color 0.4s ease, transform 0.4s ease;
+        }
+
+        .video-wrapper:hover {
+            border-color: var(--accent-red);
+            transform: scale(1.02);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
         /* Referees Grid */
         .referee-grid {
             display: grid;
@@ -479,6 +512,7 @@
             .date { margin-top: 0.2rem; margin-bottom: 0.5rem; }
             .slider-container img { height: 400px; }
             .referee-grid { grid-template-columns: 1fr; }
+            .video-grid { grid-template-columns: 1fr; } 
             .header-name { font-size: 1rem; }
             .header-nav { gap: 1rem; }
         }
@@ -487,7 +521,7 @@
         /* PRINT & PDF EXPORT STYLES                 */
         /* ========================================= */
         @media print {
-            .main-header, #portfolio-section, .site-footer { display: none !important; }
+            .main-header, #portfolio-section, #productions, .video-grid, .site-footer { display: none !important; }
             html { scroll-padding-top: 0; }
             body { background-color: #ffffff !important; color: #000000 !important; }
             .sidebar { border-right-color: #000000 !important; }
@@ -511,6 +545,7 @@
                 <a href="#training">Training</a>
                 <a href="#community">Community</a>
                 <a href="#portfolio">Portfolio</a>
+                <a href="#productions">Productions</a>
                 <a href="#references">References</a>
             </nav>
             <button id="darkModeToggle" class="header-dark-btn" aria-label="Toggle Dark Mode">
@@ -746,6 +781,28 @@
                 </div>
             </div>
 
+            <h2 id="productions" class="section-header fade-in-up" style="margin-top: 4rem;">
+                <i class="fa-solid fa-film"></i> Video Productions
+            </h2>
+            
+            <p class="summary fade-in-up" style="margin-bottom: 2rem;">
+                A selection of video productions I was involved in. Click to play directly.
+            </p>
+
+            <div class="video-grid fade-in-up">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/gjH6wnZIplE" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/LE8iHmGSfeE" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/uEEn_y4CJ28" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/5TQ_V1EDuR8" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+            </div>
             <h2 id="references" class="section-header fade-in-up" style="margin-top: 2rem;"><i class="fa-solid fa-users"></i> References</h2>
             
             <div class="referee-grid fade-in-up">
