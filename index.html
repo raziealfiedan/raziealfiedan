@@ -686,6 +686,11 @@
             font-weight: 500;
         }
 
+        /* Hide print footer on screens */
+        .print-footer {
+            display: none;
+        }
+
         /* Responsive Design for Mobile */
         @media (max-width: 900px) {
             .container { grid-template-columns: 1fr; gap: 2rem; padding: 2rem 1rem; }
@@ -731,13 +736,57 @@
         @media print {
             .main-header, #portfolio-section, #productions, .video-grid, .site-footer, .interaction-indicator, .speech-bubble, .scroll-progress-container { display: none !important; }
             html { scroll-padding-top: 0; }
-            body { background-color: #ffffff !important; color: #000000 !important; }
+            
+            /* Removed background pattern for printing */
+            body { 
+                background-color: #ffffff !important; 
+                background-image: none !important; 
+                color: #000000 !important; 
+            }
+            
             .sidebar { border-right-color: #000000 !important; }
             h1, h2, h3, a, .job-title { color: #000000 !important; }
             .fade-in-up { opacity: 1 !important; transform: none !important; transition: none !important; }
             .container { padding: 0 !important; gap: 2rem !important; max-width: 100% !important; }
             .job, .skills-section, .contact-info { page-break-inside: avoid; }
             a { text-decoration: none !important; }
+            
+            /* Show URLs next to external links when printed */
+            a[href^="http"]::after {
+                content: " (" attr(href) ")";
+                font-size: 0.85rem;
+                font-weight: normal;
+                color: #333333 !important;
+                word-break: break-all;
+            }
+
+            /* Show and format the QR Code section */
+            .print-footer {
+                display: flex !important;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                margin-top: 3rem;
+                padding-top: 2rem;
+                border-top: 2px solid #000000;
+                page-break-inside: avoid;
+            }
+            .print-footer h3 {
+                font-size: 1.2rem;
+                margin-bottom: 0.5rem;
+                text-transform: uppercase;
+                letter-spacing: 0.05rem;
+            }
+            .print-footer p {
+                font-size: 1rem;
+                margin-bottom: 1rem;
+            }
+            .print-footer img {
+                width: 120px;
+                height: 120px;
+                border: none;
+            }
         }
     </style>
 </head>
@@ -807,7 +856,7 @@
                     <li><i class="fa-solid fa-check"></i> Strategic Planning</li>
                     <li><i class="fa-solid fa-check"></i> Project Management</li>
                     <li><i class="fa-solid fa-check"></i> Art Direction</li>
-                    <li><i class="fa-solid fa-check"></i> Digital Marketing</li>
+                    <li><i class="fa-solid fa-check"></i> UI/UX Concepts</li>
                     <li><i class="fa-solid fa-check"></i> Content Strategy</li>
                     <li><i class="fa-solid fa-check"></i> Analytics & Reporting</li>
                 </ul>
@@ -1066,9 +1115,15 @@
             </button>
         </div>
         <div class="footer-credit">
-            &copy; Designed & Built by Razie Alfiedan - 2026
+            &copy; 2026 Razie Alfiedan. Designed & Built by Razie Alfiedan.
         </div>
     </footer>
+
+    <div class="print-footer">
+        <h3>View My Full Interactive Portfolio</h3>
+        <p>Scan the QR code or visit: <strong>https://raziealfiedan.github.io/</strong></p>
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://raziealfiedan.github.io/" alt="QR Code to Interactive Portfolio">
+    </div>
 
     <script>
         // DARK MODE LOGIC
