@@ -77,16 +77,21 @@
             letter-spacing: -0.02rem;
             white-space: nowrap;
             color: var(--text-main);
+            z-index: 2001;
+        }
+
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            z-index: 2001;
         }
 
         .header-nav {
             display: flex;
             gap: 1.5rem;
-            overflow-x: auto;
-            scrollbar-width: none; /* Firefox */
+            align-items: center;
         }
-
-        .header-nav::-webkit-scrollbar { display: none; }
 
         .header-nav a {
             text-decoration: none;
@@ -103,7 +108,7 @@
             color: var(--accent-red);
         }
 
-        .header-dark-btn {
+        .header-btn {
             background: none;
             border: 1px solid var(--secondary-border);
             color: var(--text-main);
@@ -117,9 +122,13 @@
             transition: all 0.3s ease;
         }
 
-        .header-dark-btn:hover {
+        .header-btn:hover {
             border-color: var(--accent-red);
             color: var(--accent-red);
+        }
+
+        .mobile-menu-btn {
+            display: none; /* Hidden on desktop */
         }
 
         /* Grid Layout */
@@ -139,24 +148,111 @@
             transition: border-color 0.4s ease;
         }
 
-        .profile-pic {
+        /* Profile Wrapper for Interactive Elements */
+        .profile-wrapper {
+            position: relative;
+            display: inline-block;
             width: 100%;
             max-width: 250px;
+            margin-bottom: 2rem;
+            cursor: pointer;
+        }
+
+        .profile-pic {
+            width: 100%;
             aspect-ratio: 2 / 3;
             object-fit: cover;
             border-radius: 0; 
-            margin-bottom: 2rem;
             border: 2px solid var(--text-main);
             filter: grayscale(70%);
-            /* Updated transition for that slow, smooth feel */
             transition: filter 0.4s ease, border-color 0.4s ease, transform 0.6s ease-out;
+            display: block;
         }
 
-        .profile-pic:hover {
+        .profile-wrapper:hover .profile-pic, .profile-wrapper.active .profile-pic {
             filter: grayscale(0%);
             border-color: var(--accent-red); 
-            /* Added the zoom effect */
             transform: scale(1.03);
+        }
+
+        /* Speech Bubble */
+        .speech-bubble {
+            position: absolute;
+            top: -40px;
+            right: -30px;
+            background-color: var(--text-main);
+            color: var(--bg-color);
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.05rem;
+            white-space: nowrap;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+            z-index: 10;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .speech-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 20px;
+            border-width: 8px 8px 0;
+            border-style: solid;
+            border-color: var(--text-main) transparent transparent transparent;
+            display: block;
+            width: 0;
+        }
+
+        /* Pulse Indicator */
+        .interaction-indicator {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            background-color: var(--accent-red);
+            color: #ffffff;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            pointer-events: none;
+            animation: pulse 2s infinite;
+            transition: opacity 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(139, 0, 0, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(139, 0, 0, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(139, 0, 0, 0); }
+        }
+
+        /* Dark mode adjustment for pulse color to match new accent red */
+        body.dark-mode .interaction-indicator {
+            background-color: var(--accent-red);
+        }
+        body.dark-mode .interaction-indicator {
+            animation: pulse-dark 2s infinite;
+        }
+        @keyframes pulse-dark {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(229, 57, 53, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(229, 57, 53, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(229, 57, 53, 0); }
+        }
+
+        /* Trigger active states */
+        .profile-wrapper:hover .speech-bubble, .profile-wrapper.active .speech-bubble {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .profile-wrapper:hover .interaction-indicator, .profile-wrapper.active .interaction-indicator {
+            opacity: 0;
         }
 
         h1 {
@@ -305,7 +401,7 @@
             border: 1px solid var(--secondary-border); 
             background: var(--secondary-bg); 
             transition: border-color 0.3s ease, background-color 0.4s ease;
-            overflow: hidden; /* Helps contain the zoom effect */
+            overflow: hidden; 
         }
 
         .slider-wrapper:hover { border-color: var(--text-main); }
@@ -328,15 +424,13 @@
             flex-shrink: 0;
             scroll-snap-align: start;
             padding: 1rem;
-            transition: filter 0.4s ease, transform 0.6s ease-out; /* Smooth transform for hover */
+            transition: filter 0.4s ease, transform 0.6s ease-out; 
         }
 
-        /* Hover Zoom Effect */
         .slider-container img:hover {
             transform: scale(1.03);
         }
 
-        /* Slider Navigation Buttons */
         .slider-btn {
             position: absolute;
             top: 50%;
@@ -360,7 +454,6 @@
         .prev-btn { left: 0; }
         .next-btn { right: 0; }
 
-        /* Thumbnail Slider Wrapper */
         .thumbnail-wrapper {
             position: relative;
             max-width: 100%;
@@ -418,7 +511,6 @@
         .thumb-prev-btn { left: 0; }
         .thumb-next-btn { right: 0; }
 
-        /* Video Productions Grid */
         .video-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -428,7 +520,7 @@
 
         .video-wrapper {
             position: relative;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            padding-bottom: 56.25%; 
             height: 0;
             overflow: hidden;
             width: 100%;
@@ -451,7 +543,6 @@
             border: 0;
         }
 
-        /* Referees Grid */
         .referee-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -459,7 +550,6 @@
             margin-bottom: 2rem;
         }
 
-        /* Scroll Animation Classes */
         .fade-in-up {
             opacity: 0;
             transform: translateY(30px);
@@ -472,7 +562,6 @@
             transform: translateY(0);
         }
 
-        /* Footer & Buttons */
         .site-footer {
             background-color: var(--text-main);
             color: var(--bg-color);
@@ -508,20 +597,52 @@
         @media (max-width: 900px) {
             .container { grid-template-columns: 1fr; gap: 2rem; padding: 2rem 1rem; }
             .sidebar { border-right: none; border-bottom: 2px solid var(--text-main); padding-right: 0; padding-bottom: 2rem; }
+            
+            /* Profile adjustments for mobile */
+            .profile-wrapper { margin-left: auto; margin-right: auto; display: block; }
+
+            /* Mobile Dropdown Menu */
+            .mobile-menu-btn { display: flex; }
+            .header-nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--bg-color);
+                flex-direction: column;
+                gap: 0;
+                align-items: stretch;
+                border-bottom: 2px solid var(--text-main);
+                
+                /* Transition for dropdown */
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.4s ease-out;
+            }
+
+            .header-nav.active {
+                max-height: 500px; /* High enough to show all links */
+            }
+
+            .header-nav a {
+                padding: 1rem 2rem;
+                border-top: 1px solid var(--secondary-border);
+                text-align: center;
+            }
+
             .job-header { flex-direction: column; }
             .date { margin-top: 0.2rem; margin-bottom: 0.5rem; }
             .slider-container img { height: 400px; }
             .referee-grid { grid-template-columns: 1fr; }
             .video-grid { grid-template-columns: 1fr; } 
             .header-name { font-size: 1rem; }
-            .header-nav { gap: 1rem; }
         }
 
         /* ========================================= */
         /* PRINT & PDF EXPORT STYLES                 */
         /* ========================================= */
         @media print {
-            .main-header, #portfolio-section, #productions, .video-grid, .site-footer { display: none !important; }
+            .main-header, #portfolio-section, #productions, .video-grid, .site-footer, .interaction-indicator, .speech-bubble { display: none !important; }
             html { scroll-padding-top: 0; }
             body { background-color: #ffffff !important; color: #000000 !important; }
             .sidebar { border-right-color: #000000 !important; }
@@ -538,7 +659,8 @@
     <header class="main-header">
         <div class="header-content">
             <div class="header-name">Razie Alfiedan</div>
-            <nav class="header-nav">
+            
+            <nav class="header-nav" id="mainNav">
                 <a href="#summary">Summary</a>
                 <a href="#experience">Experience</a>
                 <a href="#education">Education</a>
@@ -548,16 +670,26 @@
                 <a href="#productions">Productions</a>
                 <a href="#references">References</a>
             </nav>
-            <button id="darkModeToggle" class="header-dark-btn" aria-label="Toggle Dark Mode">
-                <i class="fa-solid fa-moon"></i>
-            </button>
+
+            <div class="header-controls">
+                <button id="darkModeToggle" class="header-btn" aria-label="Toggle Dark Mode">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <button id="mobileMenuBtn" class="header-btn mobile-menu-btn" aria-label="Toggle Navigation">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
         </div>
     </header>
 
     <div class="container">
         
         <div class="sidebar fade-in-up">
-            <img src="profile.jpg" alt="Razie Alfiedan" class="profile-pic">
+            <div class="profile-wrapper" id="profileWrapper">
+                <div class="speech-bubble">Growth through challenges.</div>
+                <img src="profile.jpg" alt="Razie Alfiedan" class="profile-pic">
+                <div class="interaction-indicator">Hover/Click Me!</div>
+            </div>
 
             <h1>Razie Alfiedan</h1>
             <span class="job-title">Marketing, Communications & Visual Art</span>
@@ -802,6 +934,12 @@
                 <div class="video-wrapper">
                     <iframe src="https://www.youtube.com/embed/5TQ_V1EDuR8" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                 </div>
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/p0XWTO16B4E?si=QhWog2ONMa7bd3M_" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+                <div class="video-wrapper">
+                    <iframe src="https://www.instagram.com/reel/DJnw_vozlix/embed/" title="Instagram Reel" allowtransparency="true" allowfullscreen="true" frameborder="0" scrolling="no"></iframe>
+                </div>
             </div>
             <h2 id="references" class="section-header fade-in-up" style="margin-top: 2rem;"><i class="fa-solid fa-users"></i> References</h2>
             
@@ -855,6 +993,36 @@
             icon.classList.toggle('fa-sun', isDark);
             icon.classList.toggle('fa-moon', !isDark);
             localStorage.setItem('darkMode', isDark ? 'enabled' : 'disabled');
+        });
+
+        // MOBILE MENU LOGIC
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mainNav = document.getElementById('mainNav');
+        const menuIcon = mobileMenuBtn.querySelector('i');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+            if (mainNav.classList.contains('active')) {
+                menuIcon.classList.replace('fa-bars', 'fa-xmark');
+            } else {
+                menuIcon.classList.replace('fa-xmark', 'fa-bars');
+            }
+        });
+
+        // Close mobile menu when a link is clicked
+        mainNav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 900) {
+                    mainNav.classList.remove('active');
+                    menuIcon.classList.replace('fa-xmark', 'fa-bars');
+                }
+            });
+        });
+
+        // PROFILE PHOTO CLICK LOGIC (FOR MOBILE)
+        const profileWrapper = document.getElementById('profileWrapper');
+        profileWrapper.addEventListener('click', () => {
+            profileWrapper.classList.toggle('active');
         });
 
         // SMOOTH SCROLL FOR HEADER LINKS
