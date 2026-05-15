@@ -433,24 +433,24 @@
             box-shadow: 2px 2px 0 var(--text-main);
         }
 
-        /* Tooltip Box */
+/* Tooltip Box */
         .psychometric-tags span::after {
             content: attr(data-tooltip);
             position: absolute;
             bottom: 130%; 
-            left: 50%;
-            transform: translateX(-50%) translateY(10px);
+            left: -5px; /* Anchors the box to the left edge instead of center */
+            transform: translateY(10px); /* Removed the centering translation */
             background-color: var(--text-main);
             color: var(--bg-color);
             padding: 0.6rem 0.8rem;
             width: max-content;
-            max-width: 220px; /* Keeps the text from getting too wide */
+            max-width: 240px; 
             font-size: 0.75rem;
             font-weight: 500;
             text-transform: none;
             letter-spacing: normal;
             line-height: 1.4;
-            text-align: center;
+            text-align: left; /* Left-aligning text fits the brutalist theme better */
             opacity: 0;
             visibility: hidden;
             transition: all 0.3s ease;
@@ -465,8 +465,8 @@
             content: '';
             position: absolute;
             bottom: 100%;
-            left: 50%;
-            transform: translateX(-50%) translateY(10px);
+            left: 15px; /* Moves the triangle to point at the left side of the button */
+            transform: translateY(10px);
             border-width: 6px;
             border-style: solid;
             border-color: var(--text-main) transparent transparent transparent;
@@ -484,7 +484,7 @@
         .psychometric-tags span:focus::before {
             opacity: 1;
             visibility: visible;
-            transform: translateX(-50%) translateY(0);
+            transform: translateY(0); /* Removed the centering translation here too */
         }
 
         /* Keep the button highlighted when tapped on mobile */
