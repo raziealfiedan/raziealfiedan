@@ -322,8 +322,6 @@
             transition: color 0.4s ease;
         }
 
-        .contact-info, .skills-section, .quote-container { margin-bottom: 3rem; }
-
         .sidebar h3 {
             font-size: 1rem;
             text-transform: uppercase;
@@ -405,6 +403,98 @@
             opacity: 1;
             transform: translateX(0);
         }
+
+        /* Psychometric Tags & Tooltips */
+        .psychometric-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: -2rem; 
+            margin-bottom: 3rem; 
+        }
+
+        .psychometric-tags span {
+            position: relative; /* Required for the tooltip */
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05rem;
+            padding: 0.3rem 0.6rem;
+            border: 1px solid var(--secondary-border);
+            color: var(--text-platinum);
+            transition: all 0.3s ease;
+            cursor: help; /* Changes cursor to a question mark on hover */
+        }
+
+        .psychometric-tags span:hover {
+            border-color: var(--accent-red);
+            color: var(--accent-red);
+            transform: translateY(-2px);
+            box-shadow: 2px 2px 0 var(--text-main);
+        }
+
+        /* Tooltip Box */
+        .psychometric-tags span::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 130%; 
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            background-color: var(--text-main);
+            color: var(--bg-color);
+            padding: 0.6rem 0.8rem;
+            width: max-content;
+            max-width: 220px; /* Keeps the text from getting too wide */
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: none;
+            letter-spacing: normal;
+            line-height: 1.4;
+            text-align: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            z-index: 100;
+            box-shadow: 4px 4px 0 var(--accent-red);
+            border: 1px solid var(--secondary-border);
+        }
+
+        /* Tooltip Pointer Triangle */
+        .psychometric-tags span::before {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            border-width: 6px;
+            border-style: solid;
+            border-color: var(--text-main) transparent transparent transparent;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 100;
+            pointer-events: none;
+        }
+
+        /* Show Tooltip on Hover or Mobile Tap (Focus) */
+        .psychometric-tags span:hover::after,
+        .psychometric-tags span:hover::before,
+        .psychometric-tags span:focus::after,
+        .psychometric-tags span:focus::before {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* Keep the button highlighted when tapped on mobile */
+        .psychometric-tags span:focus {
+            outline: none;
+            border-color: var(--accent-red);
+            color: var(--accent-red);
+        }
+
+        .contact-info, .skills-section, .quote-container { margin-bottom: 3rem; }
 
         /* Quote Widget Styles */
         .quote-box {
@@ -1099,6 +1189,16 @@
             <h1>Razie Alfiedan</h1>
             <span class="job-title">Marketing, Communications & Visual Art</span>
 
+            <!-- NEW ADDITION: Psychometric Tags with Context Tooltips -->
+            <div class="psychometric-tags fade-in-up">
+                <span tabindex="0" data-tooltip="MBTI: The Advocate. Highly intuitive, empathetic, and future-focused. Driven by a strong sense of integrity and quiet vision.">INFJ-T</span>
+                
+                <span tabindex="0" data-tooltip="Enneagram Tritype: Balances ambition and drive (3), loyalty and risk-assessment (6), with analytical observation (5).">Enneagram 3-6-5</span>
+                
+                <!-- Update the text inside the span and the tooltip to match your actual top CliftonStrengths -->
+                <span tabindex="0" data-tooltip="CliftonStrengths: Naturally spots relevant patterns/issues, and possesses a strong inner drive to work hard and get things done.">Strategic & Achiever</span>
+            </div>
+
             <div class="contact-info">
                 <h3><i class="fa-solid fa-address-card"></i> Contact & Socials</h3>
                 <p style="margin-bottom: 1rem;"><i class="fa-solid fa-location-dot" style="color: var(--secondary-border); margin-top: 4px;"></i> Penampang, Sabah, Malaysia</p>
@@ -1139,7 +1239,7 @@
             </div>
 
             <div class="quote-container fade-in-up">
-                <h3><i class="fa-solid fa-quote-left"></i> The Stoic Pulse</h3>
+                <h3><i class="fa-solid fa-quote-left"></i> Favourite Quotes</h3>
                 <div class="quote-box">
                     <p id="quote-text">"Trust in God, but tie your camel."</p>
                     <span id="quote-author">— Prophet Muhammad</span>
@@ -1322,7 +1422,7 @@
                 </ul>
             </div>
 
-            <h2 id="community" class="section-header fade-in-up" style="margin-top: 4rem;"><i class="fa-solid fa-hand-holding-heart"></i> Community & Additional Experience</h2>
+            <h2 id="community" class="section-header fade-in-up" style="margin-top: 4rem;"><i class="fa-solid fa-hand-holding-heart"></i> Additional Experience</h2>
 
             <div class="job fade-in-up">
                 <div class="job-header">
@@ -1347,7 +1447,7 @@
             </div>
 
             <div id="portfolio-section">
-                <h2 id="portfolio" class="section-header fade-in-up" style="margin-top: 4rem;"><i class="fa-solid fa-palette"></i> Selected Works & Portfolio</h2>
+                <h2 id="portfolio" class="section-header fade-in-up" style="margin-top: 4rem;"><i class="fa-solid fa-palette"></i> Selected Works</h2>
 
                 <h3 class="fade-in-up" style="margin-top: 2rem; margin-bottom: 1rem; text-transform: uppercase; border-bottom: 1px solid var(--secondary-border); padding-bottom: 0.5rem;">Featured Projects & Campaigns</h3>
                 
