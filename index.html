@@ -433,7 +433,7 @@
             box-shadow: 2px 2px 0 var(--text-main);
         }
 
-/* Tooltip Box */
+        /* Tooltip Box */
         .psychometric-tags span::after {
             content: attr(data-tooltip);
             position: absolute;
@@ -851,6 +851,97 @@
             margin-bottom: 2rem;
         }
 
+        /* Brutalist Contact Form */
+        .contact-form-container {
+            background-color: var(--secondary-bg);
+            border: 2px solid var(--text-main);
+            padding: 2.5rem;
+            margin-top: 1rem;
+            box-shadow: 6px 6px 0 var(--accent-red);
+            transition: all 0.4s ease;
+        }
+
+        .contact-form-container:hover {
+            box-shadow: 4px 4px 0 var(--text-main);
+            transform: translate(2px, 2px);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            font-size: 0.85rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05rem;
+            color: var(--text-main);
+        }
+
+        .form-group input, 
+        .form-group textarea {
+            font-family: inherit;
+            background-color: var(--bg-color);
+            border: 2px solid var(--text-main);
+            color: var(--text-main);
+            padding: 0.8rem;
+            font-size: 1rem;
+            border-radius: 0;
+            transition: all 0.3s ease;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-group input:focus, 
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-red);
+            box-shadow: inset 2px 2px 0 var(--dot-color);
+        }
+
+        .submit-btn {
+            background-color: var(--text-main);
+            color: var(--bg-color);
+            border: 2px solid var(--text-main);
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            font-weight: 800;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+            width: 100%;
+            transition: all 0.2s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--accent-red);
+            color: #ffffff;
+            border-color: var(--accent-red);
+        }
+
+        /* Adjust form grid for mobile */
+        @media (max-width: 900px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         .fade-in-up {
             opacity: 0;
             transform: translateY(30px);
@@ -915,8 +1006,67 @@
             font-weight: 500;
         }
 
+        /* --- PRINT OVERRIDE STYLES --- */
         .print-footer {
             display: none;
+        }
+
+        @media print {
+            /* Now hiding the entire hire-me-section instead of just the form box */
+            .main-header, #portfolio-section, #productions, .video-grid, .site-footer, .interaction-indicator, .speech-bubble, .scroll-progress-container, .quote-container, .photo-break-container, #hire-me-section { display: none !important; }
+            html { scroll-padding-top: 0; }
+            
+            body { 
+                background-color: #ffffff !important; 
+                background-image: none !important; 
+                color: #000000 !important; 
+            }
+            
+            .sidebar { border-right-color: #000000 !important; }
+            h1, h2, h3, a, .job-title { color: #000000 !important; }
+            .fade-in-up { opacity: 1 !important; transform: none !important; transition: none !important; }
+            .container { padding: 0 !important; gap: 2rem !important; max-width: 100% !important; }
+            .job, .skills-section, .contact-info, .principle-card { page-break-inside: avoid; }
+            a { text-decoration: none !important; }
+            
+            .profile-pic { box-shadow: none !important; }
+            .principles-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 1rem !important; }
+            .principle-card { box-shadow: none !important; border: 1px solid #000 !important; }
+
+            a[href^="http"]::after {
+                content: " (" attr(href) ")";
+                font-size: 0.85rem;
+                font-weight: normal;
+                color: #333333 !important;
+                word-break: break-all;
+            }
+
+            .print-footer {
+                display: flex !important;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                margin-top: 3rem;
+                padding-top: 2rem;
+                border-top: 2px solid #000000;
+                page-break-inside: avoid;
+            }
+            .print-footer h3 {
+                font-size: 1.2rem;
+                margin-bottom: 0.5rem;
+                text-transform: uppercase;
+                letter-spacing: 0.05rem;
+            }
+            .print-footer p {
+                font-size: 1rem;
+                margin-bottom: 1rem;
+            }
+            .print-footer img {
+                width: 120px;
+                height: 120px;
+                border: none;
+            }
         }
 
         /* --- COFFEE BREAK EASTER EGG CSS --- */
@@ -1039,109 +1189,6 @@
             50% { opacity: 1; }
             100% { transform: translateY(-40px) scaleX(2); opacity: 0; }
         }
-
-        /* Responsive */
-        @media (max-width: 900px) {
-            .container { grid-template-columns: 1fr; gap: 2rem; padding: 2rem 1rem; }
-            .sidebar { border-right: none; border-bottom: 2px solid var(--text-main); padding-right: 0; padding-bottom: 2rem; }
-            
-            .profile-wrapper { margin-left: auto; margin-right: auto; display: block; }
-
-            .mobile-menu-btn { display: flex; }
-            .header-nav {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: var(--bg-color);
-                flex-direction: column;
-                gap: 0;
-                align-items: stretch;
-                border-bottom: 2px solid var(--text-main);
-                
-                max-height: 0;
-                overflow: hidden;
-                transition: max-height 0.4s ease-out;
-            }
-
-            .header-nav.active { max-height: 500px; }
-
-            .header-nav a {
-                padding: 1rem 2rem;
-                border-top: 1px solid var(--secondary-border);
-                text-align: center;
-            }
-            .header-nav a::after { display: none; } 
-
-            /* Principles & Slider responsive stack */
-            .principles-grid { grid-template-columns: 1fr; }
-            .photo-break-container { height: 250px; }
-
-            .job-header { flex-direction: column; }
-            .date { margin-top: 0.2rem; margin-bottom: 0.5rem; }
-            .slider-container img { height: 400px; }
-            .referee-grid { grid-template-columns: 1fr; }
-            .video-grid { grid-template-columns: 1fr; } 
-            .header-name { font-size: 1rem; }
-        }
-
-        /* Print Override */
-        @media print {
-            .main-header, #portfolio-section, #productions, .video-grid, .site-footer, .interaction-indicator, .speech-bubble, .scroll-progress-container, .quote-container, .photo-break-container { display: none !important; }
-            html { scroll-padding-top: 0; }
-            
-            body { 
-                background-color: #ffffff !important; 
-                background-image: none !important; 
-                color: #000000 !important; 
-            }
-            
-            .sidebar { border-right-color: #000000 !important; }
-            h1, h2, h3, a, .job-title { color: #000000 !important; }
-            .fade-in-up { opacity: 1 !important; transform: none !important; transition: none !important; }
-            .container { padding: 0 !important; gap: 2rem !important; max-width: 100% !important; }
-            .job, .skills-section, .contact-info, .principle-card { page-break-inside: avoid; }
-            a { text-decoration: none !important; }
-            
-            .profile-pic { box-shadow: none !important; }
-            .principles-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 1rem !important; }
-            .principle-card { box-shadow: none !important; border: 1px solid #000 !important; }
-
-            a[href^="http"]::after {
-                content: " (" attr(href) ")";
-                font-size: 0.85rem;
-                font-weight: normal;
-                color: #333333 !important;
-                word-break: break-all;
-            }
-
-            .print-footer {
-                display: flex !important;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                text-align: center;
-                margin-top: 3rem;
-                padding-top: 2rem;
-                border-top: 2px solid #000000;
-                page-break-inside: avoid;
-            }
-            .print-footer h3 {
-                font-size: 1.2rem;
-                margin-bottom: 0.5rem;
-                text-transform: uppercase;
-                letter-spacing: 0.05rem;
-            }
-            .print-footer p {
-                font-size: 1rem;
-                margin-bottom: 1rem;
-            }
-            .print-footer img {
-                width: 120px;
-                height: 120px;
-                border: none;
-            }
-        }
     </style>
 </head>
 <body>
@@ -1164,6 +1211,7 @@
                 <a href="#portfolio">Portfolio</a>
                 <a href="#productions">Productions</a>
                 <a href="#references">References</a>
+                <a href="#opportunities" style="color: var(--accent-red);">Hire Me</a>
             </nav>
 
             <div class="header-controls">
@@ -1195,12 +1243,11 @@
                 
                 <span tabindex="0" data-tooltip="Enneagram Tritype: Balances ambition and drive (3), loyalty and risk-assessment (6), with analytical observation (5).">Enneagram 3-6-5</span>
                 
-                <!-- Update the text inside the span and the tooltip to match your actual top CliftonStrengths -->
                 <span tabindex="0" data-tooltip="CliftonStrengths: Naturally spots relevant patterns/issues, and possesses a strong inner drive to work hard and get things done.">Strategic & Achiever</span>
             </div>
 
             <div class="contact-info">
-                <h3><i class="fa-solid fa-address-card"></i> Contact & Socials</h3>
+                <h3><i class="fa-solid fa-address-card"></i> Contact</h3>
                 <p style="margin-bottom: 1rem;"><i class="fa-solid fa-location-dot" style="color: var(--secondary-border); margin-top: 4px;"></i> Penampang, Sabah, Malaysia</p>
                 <div class="contact-links">
                     <a href="mailto:razie.alfiedan@gmail.com"><i class="fa-solid fa-envelope"></i> razie.alfiedan@gmail.com</a>
@@ -1492,6 +1539,7 @@
                     <iframe src="https://www.instagram.com/reel/DJnw_vozlix/embed/" title="Instagram Reel" allowtransparency="true" allowfullscreen="true" frameborder="0" scrolling="no"></iframe>
                 </div>
             </div>
+            
             <h2 id="references" class="section-header fade-in-up" style="margin-top: 2rem;"><i class="fa-solid fa-users"></i> References</h2>
             
             <div class="referee-grid fade-in-up">
@@ -1520,6 +1568,45 @@
                 </div>
             </div>
 
+            <!-- NEW ADDITION: Wrapped the entire form section in a div id="hire-me-section" to easily hide it when printing -->
+            <div id="hire-me-section">
+                <h2 id="opportunities" class="section-header fade-in-up" style="margin-top: 4rem;">
+                    <i class="fa-solid fa-briefcase"></i> Career Opportunities
+                </h2>
+                
+                <p class="summary fade-in-up" style="margin-bottom: 2rem;">
+                    If your organization is looking for a driven, visually-minded communicator to elevate your brand, leave your details below and I will be in touch.
+                </p>
+
+                <div class="contact-form-container fade-in-up">
+                    <form action="https://formspree.io/f/maqvgkbk" method="POST">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" required placeholder="Your Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="company">Company / Organization</label>
+                                <input type="text" id="company" name="company" placeholder="Where are you hiring from?">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" required placeholder="name@company.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Contact Number</label>
+                                <input type="tel" id="phone" name="phone" placeholder="+60 12-345 6789">
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="message">Message / Role Details</label>
+                                <textarea id="message" name="message" required placeholder="Tell me about the role or opportunity..."></textarea>
+                            </div>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Inquiry <i class="fa-solid fa-arrow-right" style="margin-left: 0.5rem;"></i></button>
+                    </form>
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -1531,7 +1618,6 @@
             <button class="back-to-top" id="backToTopBtn">
                 <i class="fa-solid fa-arrow-up"></i> Back To Top
             </button>
-            <!-- NEW COFFEE BREAK BUTTON ADDED HERE -->
             <button class="back-to-top" id="coffeeBtn" title="Take a break">
                 <i class="fa-solid fa-mug-hot"></i> Break
             </button>
@@ -1547,7 +1633,6 @@
         <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://raziealfiedan.github.io/" alt="QR Code to Interactive Portfolio">
     </div>
 
-    <!-- NEW COFFEE OVERLAY MODAL ADDED HERE -->
     <div id="coffeeOverlay" class="coffee-overlay">
         <div class="coffee-modal">
             <button id="closeCoffeeBtn" class="close-coffee" aria-label="Close">
